@@ -10,21 +10,24 @@ public class CasillaOca extends Casilla {
 
     //atributos
     public CasillaOca(int numero){
-        super(numero);
+        super();
     }
+    // no se pueden cambiar
+    private static int[] posiciones_ocas = {5, 9, 14, 18, 23, 27, 32, 36};
     
     //constructor x defecto
     public CasillaOca(){
-        super(5);
+        super();
     }
+    
     //constructor x parámetros
-    public CasillaOca(int numero){
-        super(numero);
+    public CasillaOca(int numero, String nombre){
+        super(numero, nombre);
     }
     
     //constructor de copia
-    public CasillaOca(CasillaOca otraCasilla){
-        super(otraCasilla.getNumero());
+    public CasillaOca(CasillaOca c){
+        super(c);
     }
     
     //getter
@@ -32,12 +35,12 @@ public class CasillaOca extends Casilla {
 
 
     //métodos
-    
-    //en el método debería ir a la siguiente CasillaOca
-    
+
     @Override
     public void aplicarEfecto(Jugador jugador) {
         System.out.println("DE OCA EN OCA Y TIRO PORQUE ME TOCA");
+        System.out.println("EL JUGADOR " + jugador.getNombre() + " HA CAÍDO EN LA OCA !");
+        
         
         //se calcula la siguiente posición de la oca
         int nuevaPosicion = calcularSiguienteOca(this.getNumero());
@@ -47,14 +50,18 @@ public class CasillaOca extends Casilla {
         
         //para voler a tirar se repite el turno
         jugador.setPuedeRepetirTurno(true);
-        
-        private int calcularSiguienteOca(int posicionActual){
-            //aquí se pone un array con las posiciones de CasillaOca
-            int[] ocas = {3, 9, 12};
-            
-        }
     }
         
+    //encontramos la siguiente CasillaOca
+    private int calcularSiguienteOca(int posicionActual){
+        for (int oca : posiciones_ocas){
+            if (oca > posicionActual){
+                return oca; //en cuanto encuntra la siguiente, devuelve el número
+            }
+        }
+        return posicionActual; //si no hay más, llegó a la ultima
+    }
+    
     @Override
     public String toString(){
     return "Casilla de la OCA " + getNumero();

@@ -11,11 +11,13 @@ package juegooca;
  */
 public class JuegoOca {
 
-    /**
-     * @param args the command line arguments
-     */
+    // MAIN
+    
     public static void main(String[] args) {
-        // TODO code application logic here
+
+        Dado miDado = new Dado();
+    int tirada = miDado.lanzar(); // Guardas el resultado para mover al jugador
+
     }
     
 }

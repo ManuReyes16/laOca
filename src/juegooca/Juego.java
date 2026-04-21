@@ -5,15 +5,16 @@
  */
 package juegooca;
 
-/**
- *
- * @author EAG
- */
-public class Tablero {
-    //atributos
-    //casillas: Casilla[]
-    //numCasillas : int
+
+
+public class Juego {
     
-    //metodos
-    //generarTabler(): void
+    //atributos
+    //jugadores: Jugador[]
+    //tablero: Tablero
+    //numJug: int
+    //ganador: Jugador
+    //dado: Dado
+    //turnos: Turno
+    
 }

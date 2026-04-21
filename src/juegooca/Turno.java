@@ -9,11 +9,6 @@ package juegooca;
  *
  * @author EAG
  */
-public class Tablero {
-    //atributos
-    //casillas: Casilla[]
-    //numCasillas : int
+public class Turno {
     
-    //metodos
-    //generarTabler(): void
 }
