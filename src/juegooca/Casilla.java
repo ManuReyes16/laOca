@@ -11,7 +11,6 @@ package juegooca;
 public abstract class Casilla {
     
     //atributos protected x ser abstract
-    
     protected int numero;
     protected String nombre;
     
@@ -31,6 +30,22 @@ public abstract class Casilla {
     public Casilla(Casilla c){
         this.numero = c.numero;
         this.nombre = c.nombre;
+    }
+    
+    //getters
+    public int getNumero(){
+        return this.numero;
+    }
+    public String getNombre(){
+        return this.nombre;
+    }
+    
+    //setters
+    public void setNumero(int numero){
+        this.numero = numero;
+    }
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
     
