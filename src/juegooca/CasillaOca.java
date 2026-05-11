@@ -13,7 +13,7 @@ public class CasillaOca extends Casilla {
         super();
     }
     // no se pueden cambiar
-    private static int[] posiciones_ocas = {5, 9, 14, 18, 23, 27, 32, 36};
+    private static int[] posiciones_ocas = {3,7,12,17,22,28,33,39};
     
     //constructor x defecto
     public CasillaOca(){
