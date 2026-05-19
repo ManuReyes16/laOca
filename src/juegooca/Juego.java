@@ -16,5 +16,16 @@ public class Juego {
     //ganador: Jugador
     //dado: Dado
     //turnos: Turno
-    
+
+
+
+
+
+
+
+
+
+
+
+
 }

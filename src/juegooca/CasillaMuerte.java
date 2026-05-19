@@ -5,10 +5,39 @@
  */
 package juegooca;
 
-/**
- *
- * @author EAG
- */
-public class CasillaMuerte {
-    
+public class CasillaMuerte extends Casilla {
+
+    // Constructor por defecto
+    public CasillaMuerte() {
+        super();
+    }
+
+    // Constructor con solo número
+    public CasillaMuerte(int numero) {
+        super(numero, "Muerte");
+    }
+
+    // Constructor por parámetros
+    public CasillaMuerte(int numero, String nombre) {
+        super(numero, nombre);
+    }
+
+    // Constructor de copia
+    public CasillaMuerte(CasillaMuerte c) {
+        super(c);
+    }
+
+    @Override
+    public void aplicarEfecto(Jugador jugador) {
+        System.out.println("EL JUGADOR " + jugador.getNombre() + " HA CAÍDO EN LA MUERTE.");
+        System.out.println("Vuelve a la casilla inicial.");
+
+        jugador.setPosicionActual(0);
+        jugador.setPuedeRepetirTurno(false);
+    }
+
+    @Override
+    public String toString() {
+        return "Casilla MUERTE " + getNumero();
+    }
 }

@@ -5,61 +5,39 @@
  */
 package juegooca;
 
-
 public class CasillaLaberinto extends Casilla {
-    //atributos
-    public CasillaLaberinto(int numero){
+
+    // Constructor por defecto
+    public CasillaLaberinto() {
         super();
     }
-    //no se pueden cambiar
-    private static int[] posiciones_laberinto = {10, 30};
-    
-    //constructor x parámetros
-    public CasillaLaberinto(int numero, String nombre){
+
+
+    public CasillaLaberinto(int numero) {
+        super(numero, "Laberinto");
+    }
+
+    // Constructor por parámetros
+    public CasillaLaberinto(int numero, String nombre) {
         super(numero, nombre);
     }
-    
-    //constructo de copia
-    public CasillaLaberinto(CasillaLaberinto c){
+
+    // Constructor de copia
+    public CasillaLaberinto(CasillaLaberinto c) {
         super(c);
     }
-    
-    //getter y setter
-    
-    //metodos
+
     @Override
     public void aplicarEfecto(Jugador jugador) {
-        System.out.println("EN EL LABERINTO, ME HE BEBIO UN VINO TINTO... Y ME QUEDAO DORMIO");
-        System.out.println("EL JUGADOR : " + jugador.getNombre() + "HAS CAÍDO EN EL LABERINTO !!");
-        
-        //definimos la casilla
-        int casillaSalida = 6;
-        
-        
-        //se mueve al jugador
-        jugador.setPosicionActual(casillaSalida);
-        System.out.println("Debes retroceder a la CASILLA 6...");
+        System.out.println("EL JUGADOR " + jugador.getNombre() + " HA CAÍDO EN EL LABERINTO.");
+        System.out.println("Retrocede a la casilla 30.");
 
-        //esta casilla no repite turno
+        jugador.setPosicionActual(15);
         jugador.setPuedeRepetirTurno(false);
-       
     }
-    
-    //encontramos el siguiente LABERINTO
-    private int calcularSiguienteLaberinto(int posicionActual){
-        for (int laberinto : posiciones_laberinto){
-            if (laberinto > posicionActual){
-                return laberinto;
-            }
-        }
-        return posicionActual; 
-    }
-    
+
     @Override
-    public String toString(){
-        return "CASILLA DEL LABERINTO " + getNumero();
+    public String toString() {
+        return "Casilla LABERINTO " + getNumero();
     }
-    
-    
-    
 }

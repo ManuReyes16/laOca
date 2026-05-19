@@ -5,65 +5,61 @@
  */
 package juegooca;
 
-
 public class CasillaOca extends Casilla {
 
-    //atributos
-    public CasillaOca(int numero){
+    // Atributo constante: posiciones donde hay ocas
+    private static final int[] POSICIONES_OCAS = {5, 9, 14, 18, 23, 27, 32, 36};
+
+    // Constructor por defecto
+    public CasillaOca() {
         super();
     }
-    // no se pueden cambiar
-    private static int[] posiciones_ocas = {5, 9, 14, 18, 23, 27, 32, 36};
-    
-    //constructor x defecto
-    public CasillaOca(){
-        super();
+
+    // Constructor con solo número
+    public CasillaOca(int numero) {
+        super(numero, "Oca");
     }
-    
-    //constructor x parámetros
-    public CasillaOca(int numero, String nombre){
+
+    // Constructor por parámetros
+    public CasillaOca(int numero, String nombre) {
         super(numero, nombre);
     }
-    
-    //constructor de copia
-    public CasillaOca(CasillaOca c){
+
+    // Constructor de copia
+    public CasillaOca(CasillaOca c) {
         super(c);
     }
-    
-    //getter
-    //setter
-
-
-    //métodos
 
     @Override
     public void aplicarEfecto(Jugador jugador) {
         System.out.println("DE OCA EN OCA Y TIRO PORQUE ME TOCA");
-        System.out.println("EL JUGADOR " + jugador.getNombre() + " HA CAÍDO EN LA OCA !");
-        
-        
-        //se calcula la siguiente posición de la oca
+        System.out.println("EL JUGADOR " + jugador.getNombre() + " HA CAÍDO EN LA OCA!");
+
+        // Se calcula la siguiente posición de oca
         int nuevaPosicion = calcularSiguienteOca(this.getNumero());
-        
-        //se mueve al jugador
+
+        // Se mueve al jugador
         jugador.setPosicionActual(nuevaPosicion);
-        
-        //para voler a tirar se repite el turno
+
+        // Puede volver a tirar
         jugador.setPuedeRepetirTurno(true);
+
+        System.out.println("Avanza hasta la casilla " + nuevaPosicion);
     }
-        
-    //encontramos la siguiente CasillaOca
-    private int calcularSiguienteOca(int posicionActual){
-        for (int oca : posiciones_ocas){
-            if (oca > posicionActual){
-                return oca; //en cuanto encuntra la siguiente, devuelve el número
+
+    private int calcularSiguienteOca(int posicionActual) {
+        for (int oca : POSICIONES_OCAS) {
+            if (oca > posicionActual) {
+                return oca;
             }
         }
-        return posicionActual; //si no hay más, llegó a la ultima
+
+        // Si no hay más ocas, se queda donde está
+        return posicionActual;
     }
-    
+
     @Override
-    public String toString(){
-    return "Casilla de la OCA " + getNumero();
+    public String toString() {
+        return "Casilla de la OCA " + getNumero();
     }
 }

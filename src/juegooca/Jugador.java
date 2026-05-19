@@ -12,6 +12,7 @@ public class Jugador {
     private String nombre;
     private int posicionActual;
     private boolean puedeRepetirTurno = false;
+    private int turnosPerdidos;
     
     
     //constructor x defecto
@@ -19,6 +20,7 @@ public class Jugador {
         this.nombre = "Desconocido";
         this.posicionActual = 1;    //CasillaOca empieza en el 1
         this.puedeRepetirTurno = false;
+        this.turnosPerdidos = 0;
     }
     
     //constructor x parámetros
@@ -26,6 +28,7 @@ public class Jugador {
         this.nombre = nombre;
         this.posicionActual = posicionActual;
         this.puedeRepetirTurno = puedeRepetirTurno;
+        this.turnosPerdidos = 0;
     }
     
     //constructor de copia
@@ -33,6 +36,7 @@ public class Jugador {
         this.nombre = j.nombre;
         this.posicionActual = j.posicionActual;
         this.puedeRepetirTurno = j.puedeRepetirTurno;
+        this.turnosPerdidos = j.turnosPerdidos;
     }
     
     //getters
@@ -45,6 +49,9 @@ public class Jugador {
     public boolean getPuedeRepetirTurno(){
         return this.puedeRepetirTurno;
     }
+    public int getTurnosPerdidos() {
+        return turnosPerdidos;
+    }
     
     //setter
     public void setNombre(String nombre){
@@ -55,6 +62,15 @@ public class Jugador {
     }
     public void setPuedeRepetirTurno(boolean repetir){
         this.puedeRepetirTurno = repetir;
+    }
+    public void setTurnosPerdidos(int turnosPerdidos) {
+        this.turnosPerdidos = turnosPerdidos;
+    }
+
+    public void restarTurnoPerdido() {
+        if (this.turnosPerdidos > 0) {
+            this.turnosPerdidos--;
+        }
     }
     
     //metodos
