@@ -1,7 +1,7 @@
 [
 	{
-		"tipo": "dado",
-		"casillas": [
+		
+		"casillasDado": [
 			{
 				"nombre": "dado",
 				"numero": 8,
@@ -21,8 +21,7 @@
 		]
 	},
 	{
-		"tipo": "posada",
-		"casillas": [
+		"casillasPosada": [
 			{
 				"nombre": "posada",
 				"numero": 25,
@@ -31,8 +30,7 @@
 		]
 	},
 	{
-		"tipo": "oca",
-		"casillas": [
+		"casillasOca": [
 			{
 				"nombre": "oca",
 				"numero": 3,
@@ -76,8 +74,7 @@
 		]	
 	},
 	{
-		"tipo": "muerte",
-		"casillas": [
+		"casillasMuerte": [
 			{
 				"nombre": "muerte",
 				"numero": 38,
@@ -86,8 +83,7 @@
 		]
 	},
 	{
-		"tipo": "puente",
-		"casillas": [
+		"casillasPuente": [
 			{
 				"nombre": "puente",
 				"numero": 6,
@@ -101,8 +97,7 @@
 		]
 	},
 	{
-		"tipo": "laberinto",
-		"casillas": [
+		"casillasLaberinto": [
 			{
 				"nombre": "laberinto",
 				"numero": 30,
@@ -111,8 +106,7 @@
 		]
 	},
 	{
-		"tipo": "salida",
-		"casillas": [
+		"casillasSalida": [
 			{
 				"nombre": "salida",
 				"numero": 0
@@ -120,8 +114,7 @@
 		]
 	},
 	{
-		"tipo": "meta",
-		"casillas": [
+		"casillasMeta": [
 			{
 				"nombre": "meta",
 				"numero": 40
@@ -129,8 +122,7 @@
 		]
 	},
 	{
-		"tipo": "normal",
-		"casillas": [
+		"casillasNormal": [
 			{
 				"nombre": "normal",
 				"numero": 1
