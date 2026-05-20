@@ -1,14 +1,15 @@
-package org.JuegoOca;
+package juegooca;
+
 import java.util.ArrayList;
 
 public class CasillaIntermedia {
-    private ArrayList<CasillasOca> oca;
-    private ArrayList<CasillasLaberinto> laberinto;
-    private ArrayList<CasillasMeta> meta;
-    private ArrayList<CasillasMuerte> muerte;
-    private ArrayList<CasillasNormal> normal;
-    private ArrayList<CasillasPosada> posada;
-    private ArrayList<CasillasPuente> puente;
+    private ArrayList<CasillaOca> oca;
+    private ArrayList<CasillaLaberinto> laberinto;
+    private ArrayList<CasillaMeta> meta;
+    private ArrayList<CasillaMuerte> muerte;
+    private ArrayList<CasillaNormal> normal;
+    private ArrayList<CasillaPosada> posada;
+    private ArrayList<CasillaPuente> puente;
 
     public CasillaIntermedia() {
         oca = new ArrayList<>();
@@ -20,31 +21,31 @@ public class CasillaIntermedia {
         puente = new ArrayList<>();
     }
 
-    public ArrayList<CasillasOca> getOca() {
+    public ArrayList<CasillaOca> getOca() {
         return oca;
     }
 
-    public ArrayList<CasillasLaberinto> getLaberinto() {
+    public ArrayList<CasillaLaberinto> getLaberinto() {
         return laberinto;
     }
 
-    public ArrayList<CasillasMeta> getMeta() {
+    public ArrayList<CasillaMeta> getMeta() {
         return meta;
     }
 
-    public ArrayList<CasillasMuerte> getMuerte() {
+    public ArrayList<CasillaMuerte> getMuerte() {
         return muerte;
     }
 
-    public ArrayList<CasillasNormal> getNormal() {
+    public ArrayList<CasillaNormal> getNormal() {
         return normal;
     }
 
-    public ArrayList<CasillasPosada> getPosada() {
+    public ArrayList<CasillaPosada> getPosada() {
         return posada;
     }
 
-    public ArrayList<CasillasPuente> getPuente() {
+    public ArrayList<CasillaPuente> getPuente() {
         return puente;
     }
 }
