@@ -12,12 +12,33 @@ package juegooca;
 public class JuegoOca {
 
     // MAIN
-    
     public static void main(String[] args) {
 
-        Dado miDado = new Dado();
-    int tirada = miDado.lanzar(); // Guardas el resultado para mover al jugador
+        // Creo tablero
+        Tablero tablero = new Tablero();
 
+        // muestro info del juegorrr
+        System.out.println("=== JUEGO DE LA OCA ===");
+        System.out.println(tablero);
+        System.out.println();
+
+        // se recorren todas las casillas del tablero
+        for (int i = 1; i <= tablero.getNumCasillas(); i++) {
+
+            Casilla casilla = tablero.getCasilla(i);
+
+            System.out.println(
+                    "Casilla " + casilla.getNumero()
+                            + " | Nombre: " + casilla.getNombre()
+                            + " | Tipo: " + casilla.getClass().getSimpleName()
+            );
+        }
+
+        // dado en el main
+        System.out.println();
+        Dado miDado = new Dado();
+        int tirada = miDado.lanzar();
+
+        System.out.println("Tirada del dado: " + tirada);
     }
-    
 }
