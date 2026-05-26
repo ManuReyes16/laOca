@@ -8,15 +8,9 @@ package juegooca;
 
 
 public class Juego {
-    
-    //atributos
-    //jugadores: Jugador[]
-    //tablero: Tablero
-    //numJug: int
-    //ganador: Jugador
-    //dado: Dado
-    //turnos: Turno
 
+
+}
 
 
 

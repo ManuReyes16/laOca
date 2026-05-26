@@ -9,7 +9,7 @@ package juegooca;
  *
  * @author EAG
  */
-public class JuegoOca {
+public class  JuegoOca {
 
     // MAIN
     
