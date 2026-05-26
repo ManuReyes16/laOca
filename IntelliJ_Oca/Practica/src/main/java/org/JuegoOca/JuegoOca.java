@@ -14,7 +14,7 @@ public class JuegoOca {
     // MAIN
     public static void main(String[] args) {
 
-        // Creo tablero
+        // Creo tableroooo
         Tablero tablero = new Tablero();
 
         // muestro info del juegorrr
