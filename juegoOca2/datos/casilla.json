@@ -45,16 +45,27 @@
 	"normal": [
 		{"nombre": "normal", "numero": 1},
 		{"nombre": "normal", "numero": 2},
+		{"nombre": "normal", "numero": 4},
 		{"nombre": "normal", "numero": 5},
 		{"nombre": "normal", "numero": 9},
+		{"nombre": "normal", "numero": 10},
+		{"nombre": "normal", "numero": 11},
+		{"nombre": "normal", "numero": 13},
 		{"nombre": "normal", "numero": 14},
+		{"nombre": "normal", "numero": 15},
+		{"nombre": "normal", "numero": 16},
 		{"nombre": "normal", "numero": 18},
+		{"nombre": "normal", "numero": 19},
+		{"nombre": "normal", "numero": 21},
 		{"nombre": "normal", "numero": 23},
+		{"nombre": "normal", "numero": 24},
 		{"nombre": "normal", "numero": 27},
+		{"nombre": "normal", "numero": 29},
+		{"nombre": "normal", "numero": 31},
 		{"nombre": "normal", "numero": 32},
+		{"nombre": "normal", "numero": 35},
 		{"nombre": "normal", "numero": 36},
 		{"nombre": "normal", "numero": 37}
-
 	]
 }
 

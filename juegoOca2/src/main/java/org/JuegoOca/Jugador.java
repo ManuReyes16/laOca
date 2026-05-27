@@ -66,6 +66,7 @@ public class Jugador {
     public void setTurnosPerdidos(int turnosPerdidos) {
         this.turnosPerdidos = turnosPerdidos;
     }
+    public void setPosicion(int posicion){this.posicionActual = posicion; }
 
     public void restarTurnoPerdido() {
         if (this.turnosPerdidos > 0) {

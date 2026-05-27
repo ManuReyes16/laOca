@@ -83,8 +83,9 @@ public class Tablero {
     }
 
     public Casilla getCasilla(int numero){
-        if (numero >= 0 && numero < this.casillas.size()) {
-            return casillas.get(numero);
+        int indice = numero - 1; //lo ajustamos al índice del arraylist
+        if (indice >= 0 && indice < this.casillas.size()) {
+            return casillas.get(indice);
         }
         return null; //por seguridad , si piden una casilla fuera del rango
     }

@@ -8,11 +8,11 @@ public class Dado extends Casilla {
 
     //constructor x número
     public Dado(int numero) {
-        super(numero);
+        super(numero, "Dado");
     }
 
     //constructor x parámetros
-    public Dado(int numero, String nomnbre){
+    public Dado(int numero, String nombre){
         super(numero, nombre);
     }
 
