@@ -1,1 +1,0 @@
-README del proyecto laOca
