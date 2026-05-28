@@ -54,13 +54,20 @@ public class Tablero {
         this.numCasillas = numCasillas;
     }
 
-    //métodos
+
+
+    //enseña el tablero por consola con el método GENERARTABLERO
     private void generarTablero(){
         Gson traductor = new Gson();
         try{
-            FileReader fr = new FileReader("./datos/casilla.json");
-            CasillaIntermedia objetoIntermedio = traductor.fromJson(fr, CasillaIntermedia.class);
-            fr.close();
+
+            //buscamos el archivo directamente en la carpeta de resources para que funcione en todos los PC
+            java.io.InputStream is = getClass().getClassLoader().getResourceAsStream("casillas.json");
+
+            java.io.InputStreamReader isr = new java.io.InputStreamReader(is);
+            CasillaIntermedia objetoIntermedio = traductor.fromJson(isr, CasillaIntermedia.class);
+            isr.close();
+            is.close();
 
 
             //rellenamos el atributo real de la clase (this.casillas)

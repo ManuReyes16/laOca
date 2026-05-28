@@ -11,23 +11,23 @@ public class Jugador {
     //atributos
     private String nombre;
     private int posicionActual;
-    private boolean puedeRepetirTurno = false;
+    private boolean puedeRepetirTurno;
     private int turnosPerdidos;
 
 
     //constructor x defecto
     public Jugador(){
         this.nombre = "Desconocido";
-        this.posicionActual = 1;    //CasillaOca empieza en el 1
+        this.posicionActual = 0;    //CasillaOca empieza en el 1
         this.puedeRepetirTurno = false;
         this.turnosPerdidos = 0;
     }
 
     //constructor x parámetros
-    public Jugador(String nombre, int posicionActual, boolean puedeRepetirTurno){
+    public Jugador(String nombre){
         this.nombre = nombre;
-        this.posicionActual = posicionActual;
-        this.puedeRepetirTurno = puedeRepetirTurno;
+        this.posicionActual = 0;
+        this.puedeRepetirTurno = false;
         this.turnosPerdidos = 0;
     }
 
