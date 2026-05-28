@@ -10,10 +10,11 @@ import com.google.gson.Gson;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Comparator;    //sirve para ordenar
+import java.util.Comparator;   
 
 public class Tablero {
 
+    
     // Atributos
     private ArrayList<Casilla> casillas;
     private int numCasillas;
@@ -56,6 +57,7 @@ public class Tablero {
 
     //métodos
     private void generarTablero(){
+        
         Gson traductor = new Gson();
         try{
             FileReader fr = new FileReader("./datos/casilla.json");
@@ -81,13 +83,15 @@ public class Tablero {
             System.out.println("Error al leer el archivo de casillas");
         }
     }
+    
 
-    public Casilla getCasilla(int numero){
-        int indice = numero - 1; //lo ajustamos al índice del arraylist
-        if (indice >= 0 && indice < this.casillas.size()) {
-            return casillas.get(indice);
+    public Casilla getCasilla(int numero) {
+    for (Casilla casilla : this.casillas) {
+        if (casilla != null && casilla.getNumero() == numero) {
+            return casilla;
         }
-        return null; //por seguridad , si piden una casilla fuera del rango
+    }
+    return null;    
     }
 
     @Override
