@@ -54,6 +54,12 @@ public class JuegoOcaMain {
 
 
 
+
+        
+        //cerramos el teclado al final
+        teclado.close();
+
+
         // se recorren todas las casillas del tablero
         for (int i = 1; i <= tablero.getNumCasillas(); i++) {
 
