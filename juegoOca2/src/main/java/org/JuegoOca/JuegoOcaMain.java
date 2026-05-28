@@ -56,42 +56,36 @@ public class JuegoOcaMain {
 
 
         
-        //cerramos el teclado al final
-        teclado.close();
+
 
 
         // se recorren todas las casillas del tablero
         for (int i = 1; i <= tablero.getNumCasillas(); i++) {
-
-            Casilla casilla = tablero.getCasilla(i);
-            
-           
-            
-            System.out.println(casilla);
+            System.out.println(tablero.getCasilla(i));
         }
 
-        // dado en el main
-        System.out.println();
-        Dado miDado = new Dado();
-        //int tirada = miDado.lanzar();
 
-        //System.out.println("Tirada del dado: " + tirada);
-
+        System.out.println("Comienza el juego... ... ...");
 
         
+
+        // dado en el main
         
         DadoC dado = new DadoC();
 
-        Jugador jugadorPrueba = new Jugador();
-        jugadorPrueba.setNombre("Manuel");
-        jugadorPrueba.setPosicionActual(0);
-        jugadorPrueba.setPuedeRepetirTurno(false);
+        for (Jugador j : listaJugadores) {
+            ejecutarTurno(j, dado, tablero);
+        }
+        
 
-    ejecutarTurno(jugadorPrueba, dado, tablero);
-        
-        
-        
+
+        //cerramos el teclado al final
+        teclado.close();
     
+
+
+
+
     }
     
     public static void ejecutarTurno(Jugador jugador, DadoC dado, Tablero tablero) {
