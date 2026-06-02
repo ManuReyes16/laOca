@@ -5,15 +5,18 @@
  */
 package org.JuegoOca;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
+//import java.util.ArrayList;
+//import java.util.Scanner;
+import javafx.application.Application;
 
 public class JuegoOcaMain {
 
     // MAIN
     public static void main(String[] args) {
-
+        Application.launch(JuegoOcaView.class, args);
+        }
+    
+/*
         // Creamos el tablero que carga el archivo JSON con las casillas
         Tablero tablero = new Tablero();
         
@@ -165,7 +168,9 @@ public class JuegoOcaMain {
         } else {
             System.out.println(jugador.getNombre() + " no repite turno.");
         }
+    
     }
+    */
 }
     
 
