@@ -61,8 +61,26 @@ public class JuegoOcaMain {
 
         // se recorren todas las casillas del tablero
         for (int i = 1; i <= tablero.getNumCasillas(); i++) {
-            System.out.println(tablero.getCasilla(i));
+            Casilla c = tablero.getCasilla(i);
+            String icono = "⬜"; // Normal
+            
+            // Cambia según el nombre o tipo que contenga tu objeto Casilla
+            String nombre = c.toString().toLowerCase(); 
+            
+            if (nombre.contains("oca")) icono = "X";
+            else if (nombre.contains("puente")) icono = "X";
+            else if (nombre.contains("posada")) icono = "X";
+            else if (nombre.contains("muerte")) icono = "X";
+            else if (nombre.contains("laberinto")) icono = "X";
+            else if (nombre.contains("meta")) icono = "X";
+            else if (nombre.contains("dado")) icono = "X";
+
+            System.out.print(icono + " " + i + "\t");
+            
+            if (i % 8 == 0) System.out.println(); // Filas de 8 casillas
         }
+
+        System.out.println("\n");
 
 
         System.out.println("Comienza el juego... ... ...");
@@ -73,8 +91,31 @@ public class JuegoOcaMain {
         
         DadoC dado = new DadoC();
 
-        for (Jugador j : listaJugadores) {
-            ejecutarTurno(j, dado, tablero);
+
+        // el juego no parará mientras 'hayGanador' sea falso
+        boolean hayGanador = false;
+
+
+        while (!hayGanador) {
+            
+            for (Jugador j : listaJugadores) {
+                
+                ejecutarTurno(j, dado, tablero);
+
+                System.out.println("-- pulsa ENTER para el siguiente turno ... ...");
+                teclado.nextLine();
+                
+                // Comprobamos tras cada turno si este jugador ha llegado a la META (Casilla 40)
+                if (j.getPosicionActual() == tablero.getNumCasillas()) {
+                    System.out.println("\n==============================================");
+                    System.out.println("¡¡¡ TENEMOS UN GANADOR !!!");
+                    System.out.println("Enhorabuena " + j.getNombre() + ", has ganado la partida.");
+                    System.out.println("==============================================");
+                    
+                    hayGanador = true; 
+                    break; // Rompe el bucle de jugadores si alguien ya ganó
+                }
+            }
         }
         
 
