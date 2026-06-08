@@ -59,20 +59,23 @@ public class Tablero {
 
     //enseña el tablero por consola con el método GENERARTABLERO
     private void generarTablero(){
-        
-        Gson traductor = new Gson();
-        try{
 
-            //buscamos el archivo directamente en la carpeta de resources para que funcione en todos los PC
+        Gson traductor = new Gson();
+
+        try {
+
             java.io.InputStream is = getClass().getClassLoader().getResourceAsStream("casillas.json");
+
+            if (is == null) {
+                System.out.println("ERROR: No se encontró casillas.json dentro de src/main/resources");
+                return;
+            }
 
             java.io.InputStreamReader isr = new java.io.InputStreamReader(is);
             CasillaIntermedia objetoIntermedio = traductor.fromJson(isr, CasillaIntermedia.class);
             isr.close();
             is.close();
 
-
-            //rellenamos el atributo real de la clase (this.casillas)
             this.casillas.addAll(objetoIntermedio.getOca());
             this.casillas.addAll(objetoIntermedio.getLaberinto());
             this.casillas.addAll(objetoIntermedio.getMeta());
@@ -82,10 +85,8 @@ public class Tablero {
             this.casillas.addAll(objetoIntermedio.getPuente());
             this.casillas.addAll(objetoIntermedio.getDado());
 
-            //ordenamos las casillas x su número para hacer el tablero lineal
             this.casillas.sort(Comparator.comparing(Casilla::getNumero));
-        } catch (FileNotFoundException e){
-            System.out.println("No se encontró el archivo casillas.json en ./datos/");
+
         } catch (IOException e) {
             System.out.println("Error al leer el archivo de casillas");
         }
