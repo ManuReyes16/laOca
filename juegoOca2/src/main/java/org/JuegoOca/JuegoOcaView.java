@@ -4,88 +4,242 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+
 public class JuegoOcaView extends Application {
 
-    // Instanciamos nuestro controlador (igual que hacía la profesora)
     private final JuegoOcaController controller = new JuegoOcaController();
+
+    private Tablero tablero;
+    private DadoC dado;
+    private ArrayList<Jugador> jugadores;
+    private int turnoActual;
+
+    private Label lblTurno;
+    private Label lblResultadoDado;
+    private TextArea historial;
+    private VBox panelJugadores;
 
     @Override
     public void start(Stage stage) {
-        
-        // 1. Título del juego
+
+        tablero = new Tablero();
+        dado = new DadoC();
+        jugadores = new ArrayList<>();
+        turnoActual = 0;
+
+        Jugador manuel = new Jugador("Manuel");
+        Jugador alberto = new Jugador("Alberto");
+        Jugador nacho = new Jugador("Nacho");
+
+        jugadores.add(manuel);
+        jugadores.add(alberto);
+        jugadores.add(nacho);
+
         Label titulo = new Label("EL JUEGO DE LA OCA");
-        titulo.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
+        titulo.setStyle("-fx-font-size: 26px; -fx-font-weight: bold;");
 
-        // 2. Creamos la cuadrícula para el tablero visual
+        GridPane panelTablero = crearPanelTablero();
+
+        lblTurno = new Label();
+        lblTurno.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        lblResultadoDado = new Label("Dado: -");
+        lblResultadoDado.setStyle("-fx-font-size: 18px; -fx-font-weight: bold;");
+
+        panelJugadores = new VBox(10);
+        panelJugadores.setPadding(new Insets(10));
+        panelJugadores.setStyle("-fx-border-color: #999999; -fx-border-width: 1;");
+
+        Button btnTirar = new Button("Tirar dado");
+        btnTirar.setStyle("-fx-font-size: 16px; -fx-background-color: #4CAF50; -fx-text-fill: white;");
+        btnTirar.setOnAction(e -> jugarTurno());
+
+        historial = new TextArea();
+        historial.setEditable(false);
+        historial.setPrefRowCount(8);
+
+        VBox panelDerecho = new VBox(15);
+        panelDerecho.setPadding(new Insets(15));
+        panelDerecho.setPrefWidth(250);
+        panelDerecho.getChildren().addAll(lblTurno, lblResultadoDado, panelJugadores, btnTirar);
+
+        VBox zonaSuperior = new VBox(10);
+        zonaSuperior.setAlignment(Pos.CENTER);
+        zonaSuperior.setPadding(new Insets(15));
+        zonaSuperior.getChildren().add(titulo);
+
+        VBox zonaInferior = new VBox(10);
+        zonaInferior.setPadding(new Insets(10));
+        zonaInferior.getChildren().addAll(new Label("Historial de partida:"), historial);
+
+        BorderPane root = new BorderPane();
+        root.setTop(zonaSuperior);
+        root.setCenter(panelTablero);
+        root.setRight(panelDerecho);
+        root.setBottom(zonaInferior);
+
+        actualizarPanelJugadores();
+        actualizarTurno();
+
+        Scene scene = new Scene(root, 1000, 750);
+        stage.setTitle("Juego de la Oca - Alberto, Manuel y Nacho");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    private GridPane crearPanelTablero() {
+
         GridPane panelTablero = new GridPane();
-        panelTablero.setHgap(10); // Espacio horizontal entre casillas
-        panelTablero.setVgap(10); // Espacio vertical entre casillas
+        panelTablero.setHgap(10);
+        panelTablero.setVgap(10);
         panelTablero.setAlignment(Pos.CENTER);
+        panelTablero.setPadding(new Insets(20));
 
-        // 3. ¡EL BUCLE MÁGICO! Leemos del JSON a través del controlador
-        int columnasMaximas = 8; // Queremos filas de 8 casillas
+        int columnasMaximas = 8;
         int totalCasillas = controller.getNumeroCasillas();
 
         for (int i = 1; i <= totalCasillas; i++) {
-            // Pedimos los datos de la casilla actual al controlador
+
             Casilla casillaDatos = controller.getCasilla(i);
-            
-            // Creamos un contenedor visual para ESTA casilla concreta (un cuadro texturizado)
+
             VBox cuadroCasilla = new VBox(5);
             cuadroCasilla.setAlignment(Pos.CENTER);
-            cuadroCasilla.setPrefSize(70, 70); // Tamaño de cada casilla (ancho, alto)
-            
-            // Ponemos el número y el tipo de casilla dentro del cuadro
+            cuadroCasilla.setPrefSize(70, 70);
+
             Label lblNumero = new Label(String.valueOf(i));
             lblNumero.setStyle("-fx-font-weight: bold;");
-            
-            // Suponiendo que tu clase Casilla tiene un método para saber su tipo o nombre abreviado
-            Label lblTipo = new Label(casillaDatos.getNombre()); 
+
+            Label lblTipo = new Label(casillaDatos.getNombre());
             lblTipo.setStyle("-fx-font-size: 10px;");
 
             cuadroCasilla.getChildren().addAll(lblNumero, lblTipo);
 
-            // 🎨 DISEÑO DINÁMICO REACCIONANDO AL JSON:
-            // Dependiendo del tipo de casilla que venga en vuestro JSON, le pintamos un fondo diferente
-            // Cambiamos a casillaDatos.getNombre()
             String nombreLower = casillaDatos.getNombre().toLowerCase();
 
             if (nombreLower.contains("oca")) {
-                cuadroCasilla.setStyle("-fx-background-color: #81C784; -fx-border-color: #2E7D32; -fx-border-width: 2;"); // Verde Oca
+                cuadroCasilla.setStyle("-fx-background-color: #81C784; -fx-border-color: #2E7D32; -fx-border-width: 2;");
             } else if (nombreLower.contains("muerte") || nombreLower.contains("calavera")) {
-                cuadroCasilla.setStyle("-fx-background-color: #E57373; -fx-border-color: #C62828; -fx-border-width: 2;"); // Rojo Muerte
-            } else if (nombreLower.contains("puente") || nombreLower.contains("posada") || nombreLower.contains("laberinto") || nombreLower.contains("cárcel")) {
-                cuadroCasilla.setStyle("-fx-background-color: #64B5F6; -fx-border-color: #1565C0; -fx-border-width: 2;"); // Azul Especiales
+                cuadroCasilla.setStyle("-fx-background-color: #E57373; -fx-border-color: #C62828; -fx-border-width: 2;");
+            } else if (nombreLower.contains("puente") || nombreLower.contains("posada") || nombreLower.contains("laberinto")) {
+                cuadroCasilla.setStyle("-fx-background-color: #64B5F6; -fx-border-color: #1565C0; -fx-border-width: 2;");
             } else if (nombreLower.contains("meta") || nombreLower.contains("final")) {
-                cuadroCasilla.setStyle("-fx-background-color: #FFD54F; -fx-border-color: #FF8F00; -fx-border-width: 2;"); // Dorado Meta
+                cuadroCasilla.setStyle("-fx-background-color: #FFD54F; -fx-border-color: #FF8F00; -fx-border-width: 2;");
+            } else if (nombreLower.contains("dado")) {
+                cuadroCasilla.setStyle("-fx-background-color: #CE93D8; -fx-border-color: #6A1B9A; -fx-border-width: 2;");
             } else {
-                cuadroCasilla.setStyle("-fx-background-color: #F5F5F5; -fx-border-color: #BDBDBD; -fx-border-width: 1;"); // Gris Normal
+                cuadroCasilla.setStyle("-fx-background-color: #F5F5F5; -fx-border-color: #BDBDBD; -fx-border-width: 1;");
             }
 
-            // Calculamos en qué fila y columna del GridPane debe colocarse matemática mente
             int columna = (i - 1) % columnasMaximas;
             int fila = (i - 1) / columnasMaximas;
 
-            // Añadimos el cuadro visual al panel en su posición correcta
             panelTablero.add(cuadroCasilla, columna, fila);
         }
 
-        // 4. Panel raíz (VBox) que junta el título y el tablero
-        VBox root = new VBox(20);
-        root.setAlignment(Pos.CENTER);
-        root.setPadding(new Insets(20));
-        root.getChildren().addAll(titulo, panelTablero);
+        return panelTablero;
+    }
 
-        // 5. Crear la escena y mostrar la ventana (Modificamos el tamaño para que quepan las casillas)
-        Scene scene = new Scene(root, 700, 600);
-        
-        stage.setTitle("Juego de la Oca - Alberto, Manuel y Nacho");
-        stage.setScene(scene);
-        stage.show();
+    private void jugarTurno() {
+
+        Jugador jugador = jugadores.get(turnoActual);
+
+        if (jugador.getTurnosPerdidos() > 0) {
+            historial.appendText(jugador.getNombre() + " pierde este turno.\n");
+            jugador.restarTurnoPerdido();
+            pasarTurno();
+            return;
+        }
+
+        ejecutarTurno(jugador);
+
+        actualizarPanelJugadores();
+
+        if (jugador.getPosicionActual() == tablero.getNumCasillas()) {
+            historial.appendText("\n¡¡¡ " + jugador.getNombre() + " ha ganado la partida !!!\n");
+            lblTurno.setText("Ganador: " + jugador.getNombre());
+            return;
+        }
+
+        if (!jugador.getPuedeRepetirTurno()) {
+            pasarTurno();
+        } else {
+            historial.appendText(jugador.getNombre() + " repite turno.\n");
+        }
+
+        actualizarPanelJugadores();
+        actualizarTurno();
+    }
+
+    private void ejecutarTurno(Jugador jugador) {
+
+        jugador.setPuedeRepetirTurno(false);
+
+        int tirada = dado.lanzar();
+        lblResultadoDado.setText("Dado: " + tirada);
+
+        historial.appendText("\nTurno de " + jugador.getNombre() + "\n");
+        historial.appendText("Posición inicial: " + jugador.getPosicionActual() + "\n");
+        historial.appendText(jugador.getNombre() + " ha sacado un " + tirada + "\n");
+
+        int nuevaPosicion = jugador.getPosicionActual() + tirada;
+
+        if (nuevaPosicion > tablero.getNumCasillas()) {
+            int exceso = nuevaPosicion - tablero.getNumCasillas();
+            nuevaPosicion = tablero.getNumCasillas() - exceso;
+
+            historial.appendText("Se ha pasado de la meta. Rebota hasta la casilla " + nuevaPosicion + "\n");
+        }
+
+        jugador.setPosicionActual(nuevaPosicion);
+
+        historial.appendText(jugador.getNombre() + " cae en la casilla " + jugador.getPosicionActual() + "\n");
+
+        Casilla casillaActual = tablero.getCasilla(jugador.getPosicionActual());
+
+        if (casillaActual != null) {
+            casillaActual.aplicarEfecto(jugador);
+            historial.appendText("Efecto aplicado: " + casillaActual.getNombre() + "\n");
+        } else {
+            historial.appendText("Error: no existe la casilla " + jugador.getPosicionActual() + "\n");
+        }
+
+        historial.appendText(jugador.getNombre() + " termina en la casilla " + jugador.getPosicionActual() + "\n");
+    }
+
+    private void pasarTurno() {
+        turnoActual++;
+
+        if (turnoActual >= jugadores.size()) {
+            turnoActual = 0;
+        }
+    }
+
+    private void actualizarTurno() {
+        Jugador jugador = jugadores.get(turnoActual);
+        lblTurno.setText("Turno actual: " + jugador.getNombre());
+    }
+
+    private void actualizarPanelJugadores() {
+
+        panelJugadores.getChildren().clear();
+
+        Label tituloJugadores = new Label("Jugadores");
+        tituloJugadores.setStyle("-fx-font-size: 16px; -fx-font-weight: bold;");
+        panelJugadores.getChildren().add(tituloJugadores);
+
+        for (Jugador jugador : jugadores) {
+            Label label = new Label(jugador.getNombre() + " - Casilla " + jugador.getPosicionActual());
+            panelJugadores.getChildren().add(label);
+        }
     }
 }

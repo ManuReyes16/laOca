@@ -13,10 +13,22 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2,
-  "fromUser": false
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ManuReyes16"
+  }
 }]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ManuReyes16/laOca.git",
+    "accountId": "0a9e6779-f4a1-4411-b209-05aac695bd6e"
+  }
+}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2,
+  &quot;fromUser&quot;: false
+}</component>
   <component name="ProjectId" id="3EUr0jAZuCnQa1IDKpLim8LMMvh" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -24,13 +36,14 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.JuegoOcaMain.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "codigo",
+    "git-widget-placeholder": "codigo__view",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/xxx/Desktop/Oca/laOca/juegoOca2",
+    "last_opened_file_path": "C:/Users/EAG/Documents/GitHub/laOca/juegoOca2",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
